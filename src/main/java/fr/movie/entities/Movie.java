@@ -2,7 +2,6 @@ package fr.movie.entities;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Set;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -14,12 +13,20 @@ import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 /**
  * Entity representing a Movie
  */
 @Entity
 @Table(name = "FILM")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Movie {
     /**
      * Represents movie's id
@@ -49,8 +56,8 @@ public class Movie {
     /**
      * Represents movie's plot
      */
-    @Column(name = "INTRIGUE")
-    private double plot;
+    @Column(name = "INTRIGUE", length = 512)
+    private String plot;
 
     /**
      * Represents movie's release date
@@ -118,5 +125,5 @@ public class Movie {
         joinColumns = @JoinColumn(name = "ID_FILM"),
         inverseJoinColumns = @JoinColumn(name = "ID_GENRE")
     )
-    private Set<Genre> genres;
+    private List<Genre> genres;
 }

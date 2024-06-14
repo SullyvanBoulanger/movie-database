@@ -9,12 +9,23 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.MappedSuperclass;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
 /**
  * Abstract superclass reprensenting a Person
  * Used by Actor and Director classes
  */
 @MappedSuperclass
+@Getter
+@Setter
+@NoArgsConstructor
+@RequiredArgsConstructor
+@AllArgsConstructor
 public abstract class Person {
     /**
      * Represents person's id
@@ -27,18 +38,21 @@ public abstract class Person {
      * Represents person's identity
      */
     @Column(name = "IDENTITE")
+    @NonNull
     private String identity;
 
     /**
      * Represents person's url
      */
     @Column(name = "URL")
+    @NonNull
     private String url;
 
     /**
      * Represents person's birth date
      */
     @Column(name = "DATE_NAISSANCE")
+    @NonNull
     private LocalDate birthDate;
 
     /**
@@ -46,5 +60,6 @@ public abstract class Person {
      */
     @ManyToOne
     @JoinColumn(name = "ID_LIEU_NAISSANCE")
+    @NonNull
     private Location birthLocation;
 }

@@ -9,12 +9,21 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
 /**
  * Entity representing a Language
  */
 @Entity
 @Table(name = "LANGUE")
+@Getter
+@Setter
+@NoArgsConstructor
+@RequiredArgsConstructor
 public class Language {
     /**
      * Represents language's id
@@ -27,6 +36,7 @@ public class Language {
      * Represents language's name
      */
     @Column(name = "NOM")
+    @NonNull
     private String name;
 
     /**

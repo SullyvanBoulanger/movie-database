@@ -11,12 +11,21 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
 /**
  * Entity representing a Role
  */
 @Entity
 @Table(name = "ROLE")
+@Getter
+@Setter
+@NoArgsConstructor
+@RequiredArgsConstructor
 public class Role {
     /**
      * Represents role's id
@@ -29,6 +38,7 @@ public class Role {
      * Represents role's character name
      */
     @Column(name = "NOM_PERSONNAGE")
+    @NonNull
     private String characterName;
 
     /**
@@ -40,6 +50,7 @@ public class Role {
         joinColumns = @JoinColumn(name = "ID_ROLE"),
         inverseJoinColumns = @JoinColumn(name = "ID_ACTEUR")
     )
+    @NonNull
     private List<Actor> actors;
     
     /**

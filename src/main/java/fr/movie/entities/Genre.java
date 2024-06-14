@@ -11,12 +11,21 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
 /**
  * Entity representing a Genre (like a movie genre)
  */
 @Entity
 @Table(name = "GENRE")
+@Getter
+@Setter
+@NoArgsConstructor
+@RequiredArgsConstructor
 public class Genre {
     /**
      * Represents genre's id
@@ -29,6 +38,7 @@ public class Genre {
      * Represents genre's name
      */
     @Column(name = "NOM")
+    @NonNull
     private String name;
 
     /**
