@@ -12,16 +12,28 @@ import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
+/**
+ * Entity representing a Genre (like a movie genre)
+ */
 @Entity
 @Table(name = "GENRE")
 public class Genre {
+    /**
+     * Represents genre's id
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
 
+    /**
+     * Represents genre's name
+     */
     @Column(name = "NOM")
     private String name;
 
+    /**
+     * Represents genre's movies
+     */
     @ManyToMany
     @JoinTable(
         name = "FILMS_GENRES",

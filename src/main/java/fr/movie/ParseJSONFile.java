@@ -7,8 +7,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import fr.movie.dtos.MovieDto;
 
+/**
+ * Script parsing a JSON File into entities
+ */
 public class ParseJSONFile {
     private static String FILE_PATH = "src/main/resources/data/sample.json";
+
     public static void main(String[] args) {
         File jsonFile = new File(FILE_PATH);
 

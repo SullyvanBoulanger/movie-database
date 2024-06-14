@@ -9,12 +9,21 @@ import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
+/**
+ * Entity representing an Actor
+ */
 @Entity
 @Table(name = "ACTEUR")
 public class Actor extends Person {
+    /**
+     * Represents actor's height
+     */
     @Column(name = "TAILLE")
     private double height;
 
+    /**
+     * Represents actor's roles
+     */
     @ManyToMany
     @JoinTable(
         name = "ACTEURS_ROLES",
@@ -23,6 +32,9 @@ public class Actor extends Person {
     )
     private List<Role> roles;
 
+    /**
+     * Represents actor's movies
+     */
     @ManyToMany
     @JoinTable(
         name = "FILMS_ACTEURS",

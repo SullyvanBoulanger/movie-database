@@ -12,16 +12,28 @@ import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
+/**
+ * Entity representing a Role
+ */
 @Entity
 @Table(name = "ROLE")
 public class Role {
+    /**
+     * Represents role's id
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
 
+    /**
+     * Represents role's character name
+     */
     @Column(name = "NOM_PERSONNAGE")
     private String characterName;
 
+    /**
+     * Represents role's actors
+     */
     @ManyToMany
     @JoinTable(
         name = "ACTEURS_ROLES",
@@ -30,6 +42,9 @@ public class Role {
     )
     private List<Actor> actors;
     
+    /**
+     * Represents role's movies
+     */
     @ManyToMany
     @JoinTable(
         name = "FILMS_ROLES",

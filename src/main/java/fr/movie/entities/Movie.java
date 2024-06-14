@@ -15,32 +15,59 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
+/**
+ * Entity representing a Movie
+ */
 @Entity
 @Table(name = "FILM")
 public class Movie {
+    /**
+     * Represents movie's id
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
 
+    /**
+     * Represents movie's name
+     */
     @Column(name = "NOM")
     private String name;
 
+    /**
+     * Represents movie's url
+     */
     @Column(name = "URL")
     private String url;
 
+    /**
+     * Represents movie's rating
+     */
     @Column(name = "NOTE")
     private double rating;
 
+    /**
+     * Represents movie's plot
+     */
     @Column(name = "INTRIGUE")
     private double plot;
 
+    /**
+     * Represents movie's release date
+     */
     @Column(name = "ANNEE_SORTIE")
     private LocalDate releaseDate;
 
+    /**
+     * Represents movie's language
+     */
     @ManyToOne
     @JoinColumn(name = "ID_LANGUE")
     private Language language;
     
+    /**
+     * Represents movie's directors
+     */
     @ManyToMany
     @JoinTable(
         name = "FILMS_REALISATEURS",
@@ -49,6 +76,9 @@ public class Movie {
     )
     private List<Director> directors;
 
+    /**
+     * Represents movie's principal actors
+     */
     @ManyToMany
     @JoinTable(
         name = "FILMS_ACTEURS",
@@ -57,6 +87,9 @@ public class Movie {
     )
     private List<Actor> principalCasting;
 
+    /**
+     * Represents movie's locations
+     */
     @ManyToMany
     @JoinTable(
         name = "FILMS_LIEUX",
@@ -65,6 +98,9 @@ public class Movie {
     )
     private List<Location> filmingLocations;
     
+    /**
+     * Represents movie's roles
+     */
     @ManyToMany
     @JoinTable(
         name = "FILMS_ROLES",
@@ -73,6 +109,9 @@ public class Movie {
     )
     private List<Role> roles;
 
+    /**
+     * Represents movie's genres
+     */
     @ManyToMany
     @JoinTable(
         name = "FILMS_GENRES",

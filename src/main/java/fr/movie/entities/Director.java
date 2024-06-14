@@ -8,9 +8,15 @@ import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
+/**
+ * Entity representing a Director
+ */
 @Entity
 @Table(name = "REALISATEUR")
 public class Director extends Person {
+    /**
+     * Represents director's movies
+     */
     @ManyToMany
     @JoinTable(
         name = "FILMS_REALISATEURS",
