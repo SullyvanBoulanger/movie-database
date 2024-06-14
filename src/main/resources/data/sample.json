@@ -1,0 +1,319 @@
+{
+  "id": "tt0082449",
+  "pays": {
+    "nom": "United States",
+    "url": "/search/title/?country_of_origin=US&ref_=tt_dt_cn"
+  },
+  "nom": "Le fantôme de Milburn",
+  "url": "/title/tt0082449/?ref_=nm_flmg_t_1_act",
+  "rating": "6.3",
+  "plot": "Two generations of men find themselves haunted by the presence of a spectral woman. When the son of one of the elderly men returns to his hometown after his brother's mysterious death, they attempt to unravel her story.",
+  "langue": "English",
+  "lieuTournage": {
+    "ville": "Woodstock",
+    "etatDept": " Vermont",
+    "pays": " USA"
+  },
+  "realisateurs": [
+    {
+      "id": "nm0410139",
+      "identite": "John Irvin",
+      "url": "/name/nm0410139/?ref_=tt_ov_dr",
+      "naissance": {
+        "dateNaissance": "May 7 1940 ",
+        "lieuNaissance": "Newcastle-upon-Tyne, England, UK "
+      }
+    }
+  ],
+  "castingPrincipal": [
+    {
+      "id": "nm0913738",
+      "identite": "Craig Wasson",
+      "naissance": {
+        "dateNaissance": "March 15 1954 ",
+        "lieuNaissance": "Ontario, Oregon, USA "
+      },
+      "url": "/name/nm0913738/?ref_=tt_ov_st",
+      "height": "1.70 m"
+    },
+    {
+      "id": "nm0000481",
+      "identite": "Alice Krige",
+      "naissance": {
+        "dateNaissance": "June 28 1954 ",
+        "lieuNaissance": "Upington, South Africa "
+      },
+      "url": "/name/nm0000481/?ref_=tt_ov_st",
+      "height": "1.65 m"
+    },
+    {
+      "id": "nm0000001",
+      "identite": "Fred Astaire",
+      "naissance": {
+        "dateNaissance": "May 10 1899 ",
+        "lieuNaissance": "Omaha, Nebraska, USA "
+      },
+      "url": "/name/nm0000001/?ref_=tt_ov_st",
+      "height": "1.75 m"
+    },
+    {
+      "id": "nm0913738",
+      "identite": "Craig Wasson",
+      "naissance": {
+        "dateNaissance": "March 15 1954 ",
+        "lieuNaissance": "Ontario, Oregon, USA "
+      },
+      "url": "/name/nm0913738/?ref_=tt_ov_st",
+      "height": "1.70 m"
+    },
+    {
+      "id": "nm0000481",
+      "identite": "Alice Krige",
+      "naissance": {
+        "dateNaissance": "June 28 1954 ",
+        "lieuNaissance": "Upington, South Africa "
+      },
+      "url": "/name/nm0000481/?ref_=tt_ov_st",
+      "height": "1.65 m"
+    },
+    {
+      "id": "nm0000001",
+      "identite": "Fred Astaire",
+      "naissance": {
+        "dateNaissance": "May 10 1899 ",
+        "lieuNaissance": "Omaha, Nebraska, USA "
+      },
+      "url": "/name/nm0000001/?ref_=tt_ov_st",
+      "height": "1.75 m"
+    }
+  ],
+  "anneeSortie": "1981",
+  "roles": [
+    {
+      "characterName": "Don",
+      "acteur": {
+        "id": "nm0913738",
+        "identite": "Craig Wasson",
+        "naissance": {
+          "dateNaissance": "March 15 1954 ",
+          "lieuNaissance": "Ontario, Oregon, USA "
+        },
+        "url": "/name/nm0913738/?ref_=tt_cl_t_1",
+        "height": "1.70 m"
+      }
+    },
+    {
+      "characterName": "Alma",
+      "acteur": {
+        "id": "nm0000481",
+        "identite": "Alice Krige",
+        "naissance": {
+          "dateNaissance": "June 28 1954 ",
+          "lieuNaissance": "Upington, South Africa "
+        },
+        "url": "/name/nm0000481/?ref_=tt_cl_t_2",
+        "height": "1.65 m"
+      }
+    },
+    {
+      "characterName": "Ricky Hawthorne",
+      "acteur": {
+        "id": "nm0000001",
+        "identite": "Fred Astaire",
+        "naissance": {
+          "dateNaissance": "May 10 1899 ",
+          "lieuNaissance": "Omaha, Nebraska, USA "
+        },
+        "url": "/name/nm0000001/?ref_=tt_cl_t_3",
+        "height": "1.75 m"
+      }
+    },
+    {
+      "characterName": "Sears James",
+      "acteur": {
+        "id": "nm0002144",
+        "identite": "John Houseman",
+        "naissance": {
+          "dateNaissance": "September 22 1902 ",
+          "lieuNaissance": "Bucharest, Romania "
+        },
+        "url": "/name/nm0002144/?ref_=tt_cl_t_4",
+        "height": "1.77 m"
+      }
+    },
+    {
+      "characterName": "John Jaffrey",
+      "acteur": {
+        "id": "nm0002048",
+        "identite": "Melvyn Douglas",
+        "naissance": {
+          "dateNaissance": "April 5 1901 ",
+          "lieuNaissance": "Macon, Georgia, USA "
+        },
+        "url": "/name/nm0002048/?ref_=tt_cl_t_5",
+        "height": "1.86 m"
+      }
+    },
+    {
+      "characterName": "Edward Wanderley",
+      "acteur": {
+        "id": "nm0001195",
+        "identite": "Douglas Fairbanks Jr.",
+        "naissance": {
+          "dateNaissance": "December 9 1909 ",
+          "lieuNaissance": "New York City, New York, USA "
+        },
+        "url": "/name/nm0001195/?ref_=tt_cl_t_6",
+        "height": "1.85 m"
+      }
+    },
+    {
+      "characterName": "Stella",
+      "acteur": {
+        "id": "nm0623658",
+        "identite": "Patricia Neal",
+        "naissance": {
+          "dateNaissance": "January 20 1926 ",
+          "lieuNaissance": "Packard, Kentucky, USA "
+        },
+        "url": "/name/nm0623658/?ref_=tt_cl_t_7",
+        "height": "1.73 m"
+      }
+    },
+    {
+      "characterName": "Milly",
+      "acteur": {
+        "id": "nm0111795",
+        "identite": "Jacqueline Brookes",
+        "naissance": {
+          "dateNaissance": "July 24 1930 ",
+          "lieuNaissance": "Montclair, New Jersey, USA "
+        },
+        "url": "/name/nm0111795/?ref_=tt_cl_t_8"
+      }
+    },
+    {
+      "characterName": "Gregory Bate",
+      "acteur": {
+        "id": "nm0272883",
+        "identite": "Miguel Fernandes",
+        "naissance": {
+          "dateNaissance": "",
+          "lieuNaissance": ""
+        },
+        "url": "/name/nm0272883/?ref_=tt_cl_t_9"
+      }
+    },
+    {
+      "characterName": "Fenny Bate",
+      "acteur": {
+        "id": "nm0390091",
+        "identite": "Lance Holcomb",
+        "naissance": {
+          "dateNaissance": "",
+          "lieuNaissance": ""
+        },
+        "url": "/name/nm0390091/?ref_=tt_cl_t_10"
+      }
+    },
+    {
+      "characterName": "Young John Jaffrey",
+      "acteur": {
+        "id": "nm0150257",
+        "identite": "Mark Chamberlin",
+        "naissance": {
+          "dateNaissance": "June 2 1955 ",
+          "lieuNaissance": "Portland, Oregon, USA "
+        },
+        "url": "/name/nm0150257/?ref_=tt_cl_t_11"
+      }
+    },
+    {
+      "characterName": "Young Ricky Hawthorne",
+      "acteur": {
+        "id": "nm0158678",
+        "identite": "Tim Choate",
+        "naissance": {
+          "dateNaissance": "October 11 1954 ",
+          "lieuNaissance": "Dallas, Texas, USA "
+        },
+        "url": "/name/nm0158678/?ref_=tt_cl_t_12"
+      }
+    },
+    {
+      "characterName": "Young Edward Wanderley",
+      "acteur": {
+        "id": "nm0425582",
+        "identite": "Kurt Johnson",
+        "naissance": {
+          "dateNaissance": "October 5 1952 ",
+          "lieuNaissance": "Pasadena, California, USA "
+        },
+        "url": "/name/nm0425582/?ref_=tt_cl_t_13"
+      }
+    },
+    {
+      "characterName": "Young Sears James",
+      "acteur": {
+        "id": "nm0646440",
+        "identite": "Ken Olin",
+        "naissance": {
+          "dateNaissance": "July 30 ",
+          "lieuNaissance": "Chicago, Illinois, USA "
+        },
+        "url": "/name/nm0646440/?ref_=tt_cl_t_14",
+        "height": "1.80 m"
+      }
+    },
+    {
+      "characterName": "Sheriff Hardesty",
+      "acteur": {
+        "id": "nm0837976",
+        "identite": "Brad Sullivan",
+        "naissance": {
+          "dateNaissance": "November 18 1931 ",
+          "lieuNaissance": "Chicago, Illinois, USA "
+        },
+        "url": "/name/nm0837976/?ref_=tt_cl_t_15"
+      }
+    },
+    {
+      "characterName": "Churchill",
+      "acteur": {
+        "id": "nm0642259",
+        "identite": "Michael O'Neill",
+        "naissance": {
+          "dateNaissance": "May 29 1951 ",
+          "lieuNaissance": "Montgomery, Alabama "
+        },
+        "url": "/name/nm0642259/?ref_=tt_cl_t_16",
+        "height": "1.88 m"
+      }
+    },
+    {
+      "characterName": "Omar Norris",
+      "acteur": {
+        "id": "nm0101777",
+        "identite": "Guy Boyd",
+        "naissance": {
+          "dateNaissance": "April 15 1943 ",
+          "lieuNaissance": "Du Quoin, Illinois, USA "
+        },
+        "url": "/name/nm0101777/?ref_=tt_cl_t_17"
+      }
+    },
+    {
+      "characterName": "Principal",
+      "acteur": {
+        "id": "nm0123022",
+        "identite": "Robert Burr",
+        "naissance": {
+          "dateNaissance": "March 5 1922 ",
+          "lieuNaissance": "Jersey City, New Jersey, USA "
+        },
+        "url": "/name/nm0123022/?ref_=tt_cl_t_18"
+      }
+    }
+  ],
+  "genres": ["Drama", "Horror", "Thriller"]
+}
