@@ -1,5 +1,6 @@
 package fr.movie.utils;
 
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
@@ -54,7 +55,7 @@ public class ParseUtils {
      */
     public static boolean canParseToLocaldate(String dateString, DateTimeFormatter dateTimeFormatter) {
         try {
-            dateTimeFormatter.parse(dateString);
+            LocalDate.parse(dateString, dateTimeFormatter);
             return true;
         } catch (DateTimeParseException e) {
             return false;

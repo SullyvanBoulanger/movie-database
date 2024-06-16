@@ -2,9 +2,8 @@ package fr.movie.entities;
 
 import java.time.LocalDate;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -31,7 +30,6 @@ public abstract class Person {
      * Represents person's id
      */
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
 
     /**
@@ -57,7 +55,7 @@ public abstract class Person {
     /**
      * Represents person's birth location
      */
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "ID_LIEU_NAISSANCE")
     private Location birthLocation;
 }

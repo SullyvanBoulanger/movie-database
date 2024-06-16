@@ -3,6 +3,7 @@ package fr.movie.entities;
 import java.time.LocalDate;
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
@@ -24,7 +25,7 @@ public class Director extends Person {
     /**
      * Represents director's movies
      */
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
         name = "FILMS_REALISATEURS",
         joinColumns = @JoinColumn(name = "ID_REALISATEUR"),

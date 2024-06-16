@@ -2,6 +2,7 @@ package fr.movie.entities;
 
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -44,7 +45,7 @@ public class Role {
     /**
      * Represents role's actors
      */
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
         name = "ACTEURS_ROLES",
         joinColumns = @JoinColumn(name = "ID_ROLE"),
@@ -56,7 +57,7 @@ public class Role {
     /**
      * Represents role's movies
      */
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
         name = "FILMS_ROLES",
         joinColumns = @JoinColumn(name = "ID_ROLE"),

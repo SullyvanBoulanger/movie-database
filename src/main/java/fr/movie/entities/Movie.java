@@ -3,10 +3,9 @@ package fr.movie.entities;
 import java.time.LocalDate;
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
@@ -32,7 +31,6 @@ public class Movie {
      * Represents movie's id
      */
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
 
     /**
@@ -68,14 +66,14 @@ public class Movie {
     /**
      * Represents movie's language
      */
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "ID_LANGUE")
     private Language language;
     
     /**
      * Represents movie's directors
      */
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
         name = "FILMS_REALISATEURS",
         joinColumns = @JoinColumn(name = "ID_FILM"),
@@ -86,7 +84,7 @@ public class Movie {
     /**
      * Represents movie's principal actors
      */
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
         name = "FILMS_ACTEURS",
         joinColumns = @JoinColumn(name = "ID_FILM"),
@@ -97,7 +95,7 @@ public class Movie {
     /**
      * Represents movie's locations
      */
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
         name = "FILMS_LIEUX",
         joinColumns = @JoinColumn(name = "ID_FILM"),
@@ -108,7 +106,7 @@ public class Movie {
     /**
      * Represents movie's roles
      */
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
         name = "FILMS_ROLES",
         joinColumns = @JoinColumn(name = "ID_FILM"),
@@ -119,7 +117,7 @@ public class Movie {
     /**
      * Represents movie's genres
      */
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
         name = "FILMS_GENRES",
         joinColumns = @JoinColumn(name = "ID_FILM"),

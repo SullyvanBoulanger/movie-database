@@ -2,6 +2,7 @@ package fr.movie.entities;
 
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -42,6 +43,6 @@ public class Language {
     /**
      * Represents language's movies
      */
-    @OneToMany(mappedBy = "language")
+    @OneToMany(mappedBy = "language", cascade = CascadeType.ALL)
     private List<Movie> movies;
 }

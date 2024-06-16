@@ -3,6 +3,7 @@ package fr.movie.entities;
 import java.time.LocalDate;
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
@@ -31,7 +32,7 @@ public class Actor extends Person {
     /**
      * Represents actor's roles
      */
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
         name = "ACTEURS_ROLES",
         joinColumns = @JoinColumn(name = "ID_ACTEUR"),
@@ -42,7 +43,7 @@ public class Actor extends Person {
     /**
      * Represents actor's movies
      */
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
         name = "FILMS_ACTEURS",
         joinColumns = @JoinColumn(name = "ID_ACTEUR"),

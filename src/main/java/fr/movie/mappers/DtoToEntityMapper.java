@@ -206,18 +206,16 @@ public class DtoToEntityMapper {
         if (birthDateString.equals(""))
             return null;
 
-        DateTimeFormatter englishFormatter = DateTimeFormatter.ofPattern("MMMM dd yyyy").withLocale(Locale.ENGLISH);
+        DateTimeFormatter englishFormatter = DateTimeFormatter.ofPattern("MMMM d yyyy").withLocale(Locale.ENGLISH);
 
-        DateTimeFormatter frenchFormatter = DateTimeFormatter.ofPattern("dd MMMM yyyy").withLocale(Locale.FRENCH);
+        DateTimeFormatter frenchFormatter = DateTimeFormatter.ofPattern("d MMMM yyyy").withLocale(Locale.FRENCH);
 
         LocalDate parsedDate = null;
 
-        if(canParseToLocaldate(birthDateString, englishFormatter)){
-            parsedDate = LocalDate.parse(birthDateString, englishFormatter);
-        }
-
-        if(canParseToLocaldate(birthDateString, frenchFormatter)){
-            parsedDate = LocalDate.parse(birthDateString, frenchFormatter);
+        if (canParseToLocaldate(trim(birthDateString), englishFormatter)) {
+            parsedDate = LocalDate.parse(trim(birthDateString), englishFormatter);
+        } else if (canParseToLocaldate(trim(birthDateString), frenchFormatter)) {
+            parsedDate = LocalDate.parse(trim(birthDateString), frenchFormatter);
         }
 
         return parsedDate;
