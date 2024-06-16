@@ -52,7 +52,6 @@ public abstract class Person {
      * Represents person's birth date
      */
     @Column(name = "DATE_NAISSANCE")
-    @NonNull
     private LocalDate birthDate;
 
     /**
@@ -60,6 +59,5 @@ public abstract class Person {
      */
     @ManyToOne
     @JoinColumn(name = "ID_LIEU_NAISSANCE")
-    @NonNull
     private Location birthLocation;
 }

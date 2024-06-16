@@ -16,5 +16,5 @@ public class ActorDto extends DirectorDto {
     /**
      * Represents the actor's height
      */
-    private String height;
+    private String height = "";
 }
