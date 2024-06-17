@@ -1,7 +1,9 @@
 package fr.movie.ui;
 
+import java.util.List;
 import java.util.Scanner;
 
+import fr.movie.entities.Movie;
 import fr.movie.repositories.MovieRepository;
 
 public class MenuInteraction {
@@ -21,12 +23,15 @@ public class MenuInteraction {
     public void askUser() {
         System.out.println("Choissisez une option (1 à 8) : ");
         userChoice = scanner.nextInt();
+        scanner.nextLine();
     }
 
     public boolean applyUserChoice() {
+        printSeparator();
+
         switch (userChoice) {
             case 1:
-
+                printMoviesFromActorName();
                 break;
             case 2:
 
@@ -55,6 +60,7 @@ public class MenuInteraction {
 
         }
 
+        printSeparator();
         return true;
     }
 
@@ -68,5 +74,24 @@ public class MenuInteraction {
                 "6. Affichage des films sortis entre 2 années données et qui ont un acteur/actrice donné au casting\n");
         System.out.println("7. Trouver le plus court chemin entre 2 acteurs\n");
         System.out.println("8. Fin de l’application\n");
+    }
+
+    private String askUser(String message){
+        System.out.println(message);
+        String answer = scanner.nextLine();
+        return answer;
+    }
+
+    private void printMoviesFromActorName(){
+        String actorName = askUser("Prénom Nom de l'acteur : ");
+
+        List<Movie> movies = movieRepository.findMoviesFromActorName(actorName);
+
+        printSeparator();
+        movies.forEach(movie -> System.out.println(movie.getName()));
+    }
+
+    private void printSeparator(){
+        System.out.println("----------");
     }
 }

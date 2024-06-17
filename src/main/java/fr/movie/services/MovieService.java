@@ -29,7 +29,7 @@ public class MovieService {
      * Empty constructor initializing the attributes to connect to database
      */
     public MovieService() {
-        this.entityManagerFactory = Persistence.createEntityManagerFactory("movies");
+        this.entityManagerFactory = Persistence.createEntityManagerFactory("drop-and-create-movies");
         this.entityManager = entityManagerFactory.createEntityManager();
     }
 
