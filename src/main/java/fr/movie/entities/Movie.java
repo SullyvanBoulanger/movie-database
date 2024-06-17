@@ -1,6 +1,5 @@
 package fr.movie.entities;
 
-import java.time.LocalDate;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
@@ -61,7 +60,7 @@ public class Movie {
      * Represents movie's release date
      */
     @Column(name = "ANNEE_SORTIE")
-    private LocalDate releaseDate;
+    private int realeaseYear;
 
     /**
      * Represents movie's language

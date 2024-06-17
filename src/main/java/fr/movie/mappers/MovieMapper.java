@@ -4,7 +4,6 @@ import static fr.movie.utils.ParseUtils.parseDouble;
 import static fr.movie.utils.ParseUtils.parseInt;
 import static fr.movie.utils.StringUtils.trim;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -68,8 +67,7 @@ public class MovieMapper extends DtoToEntityMapper<MovieDto, Movie> {
         if (movieDto.getPays() != null)
             countryMapper.putCountryInMemory(countryMapper.mapDtoToEntity(movieDto.getPays()));
 
-        // TODO : Change this to an integer
-        LocalDate releaseDate = LocalDate.of(parseInt(trim(movieDto.getAnneeSortie())), 1, 1);
+        int releaseDate = parseInt(trim(movieDto.getAnneeSortie()));
         Language language = languageMapper.mapDtoToEntity(movieDto.getLangue());
 
         List<Location> filmingLocations = new ArrayList<>();
