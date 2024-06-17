@@ -2,6 +2,7 @@ package fr.movie.repositories;
 
 import java.util.List;
 
+import fr.movie.entities.Actor;
 import fr.movie.entities.Movie;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
@@ -52,6 +53,14 @@ public class MovieRepository {
         TypedQuery<Movie> query = entityManager.createQuery(
                 "SELECT movies FROM Actor actor JOIN actor.movies movies WHERE actor.identity LIKE :name", Movie.class);
         query.setParameter("name", actorName);
+
+        return query.getResultList();
+    }
+
+    public List<Actor> findCastingFromMovieName(String movieName){
+        TypedQuery<Actor> query = entityManager.createQuery(
+                "SELECT principalCasting FROM Movie movie JOIN movie.principalCasting principalCasting WHERE movie.name LIKE :name", Actor.class);
+        query.setParameter("name", movieName);
 
         return query.getResultList();
     }

@@ -3,6 +3,7 @@ package fr.movie.ui;
 import java.util.List;
 import java.util.Scanner;
 
+import fr.movie.entities.Actor;
 import fr.movie.entities.Movie;
 import fr.movie.repositories.MovieRepository;
 
@@ -34,9 +35,8 @@ public class MenuInteraction {
                 printMoviesFromActorName();
                 break;
             case 2:
-
+                printCastingFromMovieName();
                 break;
-
             case 3:
 
                 break;
@@ -76,13 +76,17 @@ public class MenuInteraction {
         System.out.println("8. Fin de l’application\n");
     }
 
-    private String askUser(String message){
+    private void printSeparator() {
+        System.out.println("----------");
+    }
+
+    private String askUser(String message) {
         System.out.println(message);
         String answer = scanner.nextLine();
         return answer;
     }
 
-    private void printMoviesFromActorName(){
+    private void printMoviesFromActorName() {
         String actorName = askUser("Prénom Nom de l'acteur : ");
 
         List<Movie> movies = movieRepository.findMoviesFromActorName(actorName);
@@ -91,7 +95,12 @@ public class MenuInteraction {
         movies.forEach(movie -> System.out.println(movie.getName()));
     }
 
-    private void printSeparator(){
-        System.out.println("----------");
+    private void printCastingFromMovieName() {
+        String movieName = askUser("Nom du film : ");
+
+        List<Actor> casting = movieRepository.findCastingFromMovieName(movieName);
+
+        printSeparator();
+        casting.forEach(actor -> System.out.println(actor.getIdentity()));
     }
 }
