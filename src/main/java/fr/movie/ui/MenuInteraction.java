@@ -38,7 +38,7 @@ public class MenuInteraction {
                 printCastingFromMovieName();
                 break;
             case 3:
-
+                printMoviesBetweenYears();
                 break;
             case 4:
 
@@ -80,14 +80,20 @@ public class MenuInteraction {
         System.out.println("----------");
     }
 
-    private String askUser(String message) {
+    private String askStringUser(String message) {
         System.out.println(message);
-        String answer = scanner.nextLine();
+        return scanner.nextLine();
+    }
+
+    private int askIntUser(String message) {
+        System.out.println(message);
+        int answer = scanner.nextInt();
+        scanner.nextLine();
         return answer;
     }
 
     private void printMoviesFromActorName() {
-        String actorName = askUser("Prénom Nom de l'acteur : ");
+        String actorName = askStringUser("Prénom Nom de l'acteur : ");
 
         List<Movie> movies = movieRepository.findMoviesFromActorName(actorName);
 
@@ -96,11 +102,21 @@ public class MenuInteraction {
     }
 
     private void printCastingFromMovieName() {
-        String movieName = askUser("Nom du film : ");
+        String movieName = askStringUser("Nom du film : ");
 
         List<Actor> casting = movieRepository.findCastingFromMovieName(movieName);
 
         printSeparator();
         casting.forEach(actor -> System.out.println(actor.getIdentity()));
+    }
+
+    private void printMoviesBetweenYears() {
+        int firstYear = askIntUser("1ère année (inclus): ");
+        int secondYear = askIntUser("2ème année (inclus): ");
+
+        List<Movie> movies = movieRepository.findMovieBetweenTwoYears(firstYear, secondYear);
+
+        printSeparator();
+        movies.forEach(movie -> System.out.println(movie.getName()));
     }
 }

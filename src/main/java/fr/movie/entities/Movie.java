@@ -60,7 +60,7 @@ public class Movie {
      * Represents movie's release date
      */
     @Column(name = "ANNEE_SORTIE")
-    private int realeaseYear;
+    private int releaseYear;
 
     /**
      * Represents movie's language

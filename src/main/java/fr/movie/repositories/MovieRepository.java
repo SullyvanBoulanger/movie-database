@@ -57,10 +57,34 @@ public class MovieRepository {
         return query.getResultList();
     }
 
-    public List<Actor> findCastingFromMovieName(String movieName){
+    /**
+     * Find principal casting from a movie name
+     * 
+     * @param movieName String representing movie name
+     * @return List of Actor
+     */
+    public List<Actor> findCastingFromMovieName(String movieName) {
         TypedQuery<Actor> query = entityManager.createQuery(
-                "SELECT principalCasting FROM Movie movie JOIN movie.principalCasting principalCasting WHERE movie.name LIKE :name", Actor.class);
+                "SELECT principalCasting FROM Movie movie JOIN movie.principalCasting principalCasting WHERE movie.name LIKE :name",
+                Actor.class);
         query.setParameter("name", movieName);
+
+        return query.getResultList();
+    }
+
+    /**
+     * Find movies released between two years
+     * 
+     * @param firstYear  Int representing first year (included)
+     * @param secondYear Int representing second year (included)
+     * @return List of Movie
+     */
+    public List<Movie> findMovieBetweenTwoYears(int firstYear, int secondYear) {
+        TypedQuery<Movie> query = entityManager.createQuery(
+                "SELECT movie FROM Movie movie WHERE movie.releaseYear BETWEEN :firstYear AND :secondYear",
+                Movie.class);
+        query.setParameter("firstYear", firstYear);
+        query.setParameter("secondYear", secondYear);
 
         return query.getResultList();
     }
