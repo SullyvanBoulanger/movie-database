@@ -42,7 +42,6 @@ public class MovieMapper extends DtoToEntityMapper<MovieDto, Movie> {
      */
     private DirectorMapper directorMapper = new DirectorMapper(countryMapper, locationMapper);
 
-
     /**
      * Actor mapper
      */
@@ -57,7 +56,7 @@ public class MovieMapper extends DtoToEntityMapper<MovieDto, Movie> {
      * Genre mapper
      */
     private GenreMapper genreMapper = new GenreMapper();
-    
+
     @Override
     public Movie mapDtoToEntity(MovieDto movieDto) {
         String id = trim(movieDto.getId());
@@ -65,6 +64,10 @@ public class MovieMapper extends DtoToEntityMapper<MovieDto, Movie> {
         String url = trim(movieDto.getUrl());
         double rating = parseDouble(trim(movieDto.getRating()));
         String plot = trim(movieDto.getPlot());
+
+        if (movieDto.getPays() != null)
+            countryMapper.putCountryInMemory(countryMapper.mapDtoToEntity(movieDto.getPays()));
+
         // TODO : Change this to an integer
         LocalDate releaseDate = LocalDate.of(parseInt(trim(movieDto.getAnneeSortie())), 1, 1);
         Language language = languageMapper.mapDtoToEntity(movieDto.getLangue());

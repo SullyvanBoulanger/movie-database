@@ -20,4 +20,13 @@ public class CountryMapper extends DtoToEntityMapper<CountryDto, Country> {
         return findInMemoryOrElsePut(name, country);
     }
 
+    /**
+     * Put provided country in memory map using it's name as key
+     * 
+     * @param country Country to put
+     */
+    public void putCountryInMemory(Country country) {
+        inMemoryEntities.put(country.getName(), country);
+    }
+
 }
