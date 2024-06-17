@@ -9,7 +9,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import fr.movie.dtos.MovieDto;
 import fr.movie.entities.Movie;
-import fr.movie.mappers.DtoToEntityMapper;
+import fr.movie.mappers.MovieMapper;
 import fr.movie.services.MovieService;
 
 /**
@@ -24,14 +24,13 @@ public class ParseJSONFile {
     public static void main(String[] args) {
         File jsonFile = new File(FILE_PATH);
         ObjectMapper objectMapper = new ObjectMapper();
-        DtoToEntityMapper dtoToEntityMapper = new DtoToEntityMapper();
+        MovieMapper movieMapper = new MovieMapper();
 
         try {
             List<MovieDto> movieDto = objectMapper.readValue(jsonFile, new TypeReference<List<MovieDto>>(){});
-            List<Movie> movies = movieDto.stream().map(dtoToEntityMapper::mapMovieDtoToMovieEntity).toList();
+            List<Movie> movies = movieDto.stream().map(movieMapper::mapDtoToEntity).toList();
 
             MovieService movieService = new MovieService();
-            // TODO : Refacto how I persist my elements because right now, entities can be doubled
             movieService.persistMovies(movies);
         } catch (IOException e) {
             e.printStackTrace();

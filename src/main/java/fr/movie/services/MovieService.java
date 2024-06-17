@@ -3,6 +3,7 @@ package fr.movie.services;
 import java.util.List;
 
 import fr.movie.entities.Movie;
+import fr.movie.repositories.MovieRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
@@ -39,11 +40,13 @@ public class MovieService {
      */
     @Transactional
     public void persistMovies(List<Movie> movies) {
+        MovieRepository movieRepository = new MovieRepository(entityManagerFactory, entityManager);
+
         EntityTransaction transaction = entityManager.getTransaction();
         transaction.begin();
 
         movies.forEach(movie -> {
-            Movie existingMovie = findMovieById(movie.getId());
+            Movie existingMovie = movieRepository.findMovieById(movie.getId());
 
             if (existingMovie == null) {
                 entityManager.persist(movie);
@@ -51,14 +54,5 @@ public class MovieService {
         });
 
         transaction.commit();
-    }
-
-    /**
-     * Find a Movie by Id
-     * @param id id to search for
-     * @return Movie if provided id exists or null
-     */
-    private Movie findMovieById(String id) {
-        return entityManager.find(Movie.class, id);
     }
 }
