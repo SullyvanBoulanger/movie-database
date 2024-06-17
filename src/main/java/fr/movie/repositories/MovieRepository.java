@@ -6,6 +6,9 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 import lombok.AllArgsConstructor;
 
+/**
+ * Represents a repository containing requests to find Movies
+ */
 @AllArgsConstructor
 public class MovieRepository {
     /**
