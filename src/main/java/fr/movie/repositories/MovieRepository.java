@@ -88,4 +88,25 @@ public class MovieRepository {
 
         return query.getResultList();
     }
+
+    /**
+     * Find movies common to two actors
+     * 
+     * @param actorName0 Actor Name
+     * @param actorName1 Actor Name
+     * @return List of Movie
+     */
+    public List<Movie> findMovieCommonToTwoActors(String actorName0, String actorName1) {
+        List<Movie> movies = findMoviesFromActorName(actorName0);
+
+        List<Movie> commonMovies = movies.stream().filter(movie -> {
+            List<Actor> actors = movie.getRoles().stream()
+                    .flatMap(role -> role.getActors().stream())
+                    .filter(actor -> (actor.getIdentity().equals(actorName1)))
+                    .toList();
+            return actors.size() > 0;
+        }).toList();
+
+        return commonMovies;
+    }
 }

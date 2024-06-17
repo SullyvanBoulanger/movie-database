@@ -7,13 +7,29 @@ import fr.movie.entities.Actor;
 import fr.movie.entities.Movie;
 import fr.movie.repositories.MovieRepository;
 
+
+/**
+ * Represents menu interaction between user and computer
+ */
 public class MenuInteraction {
+    /**
+     * MovieRepository
+     */
     private MovieRepository movieRepository = new MovieRepository();
 
+    /**
+     * Scanner
+     */
     private Scanner scanner = new Scanner(System.in);
 
+    /**
+     * int representing user choice
+     */
     private int userChoice = 0;
 
+    /**
+     * Print welcome message
+     */
     public void printWelcome() {
         System.out.println("""
                 Bienvenue à IMDB, votre base de donnée pour les films.
@@ -21,12 +37,20 @@ public class MenuInteraction {
                 """);
     }
 
+    /**
+     * Ask User to input an integer for his choice
+     */
     public void askUser() {
         System.out.println("Choissisez une option (1 à 8) : ");
         userChoice = scanner.nextInt();
         scanner.nextLine();
     }
 
+    /**
+     * Apply user choice (between 1 & 8). 
+     * If 8 is chosen, the scanner will be close and return false.  
+     * @return False if user has chosen 8, else return true 
+     */
     public boolean applyUserChoice() {
         printSeparator();
 
@@ -41,7 +65,7 @@ public class MenuInteraction {
                 printMoviesBetweenYears();
                 break;
             case 4:
-
+                printCommonMoviesBetweenActors();
                 break;
             case 5:
 
@@ -64,6 +88,9 @@ public class MenuInteraction {
         return true;
     }
 
+    /**
+     * Print menu options
+     */
     public void printMenu() {
         System.out.println("1. Affichage de la filmographie d’un acteur donné\n");
         System.out.println("2. Affichage du casting d’un film donné\n");
@@ -76,15 +103,30 @@ public class MenuInteraction {
         System.out.println("8. Fin de l’application\n");
     }
 
+    /**
+     * Print a separating line to improve readibility 
+     */
     private void printSeparator() {
         System.out.println("----------");
     }
 
+    /**
+     * Ask user for a String with message before
+     * 
+     * @param message Message to print before the input lock
+     * @return String input by user
+     */
     private String askStringUser(String message) {
         System.out.println(message);
         return scanner.nextLine();
     }
 
+    /**
+     * Ask user for a integer with message before
+     * 
+     * @param message Message to print before the input lock
+     * @return int input by user
+     */
     private int askIntUser(String message) {
         System.out.println(message);
         int answer = scanner.nextInt();
@@ -92,8 +134,11 @@ public class MenuInteraction {
         return answer;
     }
 
+    /**
+     * Print movies from an actor name asked
+     */
     private void printMoviesFromActorName() {
-        String actorName = askStringUser("Prénom Nom de l'acteur : ");
+        String actorName = askStringUser("Prénom Nom de l'acteur/actrice : ");
 
         List<Movie> movies = movieRepository.findMoviesFromActorName(actorName);
 
@@ -101,6 +146,9 @@ public class MenuInteraction {
         movies.forEach(movie -> System.out.println(movie.getName()));
     }
 
+    /**
+     * Print actors from movie's casting from a movie name asked
+     */
     private void printCastingFromMovieName() {
         String movieName = askStringUser("Nom du film : ");
 
@@ -110,11 +158,27 @@ public class MenuInteraction {
         casting.forEach(actor -> System.out.println(actor.getIdentity()));
     }
 
+    /**
+     * Print movies between two years asked
+     */
     private void printMoviesBetweenYears() {
         int firstYear = askIntUser("1ère année (inclus): ");
         int secondYear = askIntUser("2ème année (inclus): ");
 
         List<Movie> movies = movieRepository.findMovieBetweenTwoYears(firstYear, secondYear);
+
+        printSeparator();
+        movies.forEach(movie -> System.out.println(movie.getName()));
+    }
+
+    /**
+     * Print movies common to two actors name asked
+     */
+    private void printCommonMoviesBetweenActors() {
+        String actorName0 = askStringUser("1er acteur/actrice : ");
+        String actorName1 = askStringUser("2ème acteur/actrice : ");
+
+        List<Movie> movies = movieRepository.findMovieCommonToTwoActors(actorName0, actorName1);
 
         printSeparator();
         movies.forEach(movie -> System.out.println(movie.getName()));
