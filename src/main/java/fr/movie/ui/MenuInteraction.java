@@ -71,7 +71,7 @@ public class MenuInteraction {
                 printCommonActorsBetweenMovies();
                 break;
             case 6:
-
+                printMoviesBetweenYearsWithAnActor();
                 break;
             case 7:
 
@@ -195,5 +195,20 @@ public class MenuInteraction {
 
         printSeparator();
         actors.forEach(actor -> System.out.println(actor.getIdentity()));
+    }
+
+    /**
+     * Print movies between years with an actor all asked
+     */
+    private void printMoviesBetweenYearsWithAnActor() {
+        int firstYear = askIntUser("1ère année (inclus): ");
+        int secondYear = askIntUser("2ème année (inclus): ");
+
+        String actorName = askStringUser("Prénom Nom de l'acteur/actrice : ");
+
+        List<Movie> movies = movieRepository.findMoviesBetweenYearsWithAnActor(firstYear, secondYear, actorName);
+
+        printSeparator();
+        movies.forEach(movie -> System.out.println(movie.getName()));
     }
 }

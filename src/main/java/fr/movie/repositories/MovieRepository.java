@@ -136,4 +136,23 @@ public class MovieRepository {
 
         return actors0;
     }
+
+    /**
+     * Find movies between two years with an actor in its casting
+     * 
+     * @param year0     (int) First year
+     * @param year1     (int) Second year
+     * @param actorName (String) Actor name
+     * @return List of Movie
+     */
+    public List<Movie> findMoviesBetweenYearsWithAnActor(int year0, int year1, String actorName) {
+        List<Movie> movies = findMovieBetweenTwoYears(year0, year1);
+        TypedQuery<Actor> query = entityManager.createQuery(
+                "SELECT actor FROM Actor actor WHERE actor.identity LIKE :name",
+                Actor.class);
+        query.setParameter("name", actorName);
+        Actor actor = query.getResultList().getFirst();
+
+        return movies.stream().filter(movie -> movie.getPrincipalCasting().contains(actor)).toList();
+    }
 }
