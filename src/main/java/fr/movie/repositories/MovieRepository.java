@@ -1,5 +1,6 @@
 package fr.movie.repositories;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import fr.movie.entities.Actor;
@@ -96,7 +97,7 @@ public class MovieRepository {
      * @param actorName1 Actor Name
      * @return List of Movie
      */
-    public List<Movie> findMovieCommonToTwoActors(String actorName0, String actorName1) {
+    public List<Movie> findMoviesCommonToTwoActors(String actorName0, String actorName1) {
         List<Movie> movies = findMoviesFromActorName(actorName0);
 
         List<Movie> commonMovies = movies.stream().filter(movie -> {
@@ -108,5 +109,31 @@ public class MovieRepository {
         }).toList();
 
         return commonMovies;
+    }
+
+    /**
+     * Find actors common to two movies
+     * 
+     * @param movieName0 First Movie Name
+     * @param movieName1 Second Movie Name
+     * @return List of Actor
+     */
+    public List<Actor> findActorsCommonToTwoMovies(String movieName0, String movieName1) {
+        TypedQuery<Movie> query = entityManager.createQuery("SELECT movie FROM Movie movie WHERE movie.name LIKE :name",
+                Movie.class);
+        query.setParameter("name", movieName0);
+        Movie movie0 = query.getResultList().getFirst();
+
+        query.setParameter("name", movieName1);
+        Movie movie1 = query.getResultList().getFirst();
+
+        List<Actor> actors0 = new ArrayList<>(
+                movie0.getRoles().stream().flatMap(role -> role.getActors().stream()).toList());
+        List<Actor> actors1 = new ArrayList<>(
+                movie1.getRoles().stream().flatMap(role -> role.getActors().stream()).toList());
+
+        actors0.retainAll(actors1);
+
+        return actors0;
     }
 }

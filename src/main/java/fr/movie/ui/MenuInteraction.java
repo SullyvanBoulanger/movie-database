@@ -7,7 +7,6 @@ import fr.movie.entities.Actor;
 import fr.movie.entities.Movie;
 import fr.movie.repositories.MovieRepository;
 
-
 /**
  * Represents menu interaction between user and computer
  */
@@ -47,9 +46,10 @@ public class MenuInteraction {
     }
 
     /**
-     * Apply user choice (between 1 & 8). 
-     * If 8 is chosen, the scanner will be close and return false.  
-     * @return False if user has chosen 8, else return true 
+     * Apply user choice (between 1 & 8).
+     * If 8 is chosen, the scanner will be close and return false.
+     * 
+     * @return False if user has chosen 8, else return true
      */
     public boolean applyUserChoice() {
         printSeparator();
@@ -68,7 +68,7 @@ public class MenuInteraction {
                 printCommonMoviesBetweenActors();
                 break;
             case 5:
-
+                printCommonActorsBetweenMovies();
                 break;
             case 6:
 
@@ -104,7 +104,7 @@ public class MenuInteraction {
     }
 
     /**
-     * Print a separating line to improve readibility 
+     * Print a separating line to improve readibility
      */
     private void printSeparator() {
         System.out.println("----------");
@@ -178,9 +178,22 @@ public class MenuInteraction {
         String actorName0 = askStringUser("1er acteur/actrice : ");
         String actorName1 = askStringUser("2ème acteur/actrice : ");
 
-        List<Movie> movies = movieRepository.findMovieCommonToTwoActors(actorName0, actorName1);
+        List<Movie> movies = movieRepository.findMoviesCommonToTwoActors(actorName0, actorName1);
 
         printSeparator();
         movies.forEach(movie -> System.out.println(movie.getName()));
+    }
+
+    /**
+     * Print actors common to two movie name asked
+     */
+    private void printCommonActorsBetweenMovies() {
+        String movieName0 = askStringUser("1er film : ");
+        String movieName1 = askStringUser("2ème film : ");
+
+        List<Actor> actors = movieRepository.findActorsCommonToTwoMovies(movieName0, movieName1);
+
+        printSeparator();
+        actors.forEach(actor -> System.out.println(actor.getIdentity()));
     }
 }

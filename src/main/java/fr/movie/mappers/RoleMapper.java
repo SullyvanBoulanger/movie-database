@@ -29,7 +29,22 @@ public class RoleMapper extends DtoToEntityMapper<RoleDto, Role> {
         actors.add(actor);
 
         Role role = new Role(characterName, actors);
-        return findInMemoryOrElsePut(characterName, role);
+        return findInMemoryOrElsePut(generateCompositeKey(role), role);
     }
-    
+
+    /**
+     * Generate a composite key from a Role
+     * 
+     * @param role Role
+     * @return String composite key
+     */
+    private String generateCompositeKey(Role role) {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(role.getCharacterName())
+                .append("|")
+                .append(role.getActors().getFirst().getIdentity());
+
+        return stringBuilder.toString();
+    }
+
 }

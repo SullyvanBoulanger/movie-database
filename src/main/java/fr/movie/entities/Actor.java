@@ -55,4 +55,23 @@ public class Actor extends Person {
         super(id, identity, url, birthDate, birthLocation);
         this.height = height;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(!(obj instanceof Actor)){
+            return false;
+        }
+
+        Actor arg = (Actor) obj;
+
+        if (!arg.getId().equals(getId())) {
+            return false;
+        }
+
+        if (!arg.getIdentity().equals(getIdentity())) {
+            return false;
+        }
+
+        return true;
+    }
 }
