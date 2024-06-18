@@ -13,7 +13,7 @@ import fr.movie.repositories.MovieRepository;
 /**
  * Represents menu interaction between user and computer
  */
-public class MenuInteraction {
+public class SearchMenu {
     /**
      * MovieRepository
      */
@@ -28,6 +28,18 @@ public class MenuInteraction {
      * int representing user choice
      */
     private int userChoice = 0;
+
+    /**
+     * Start the menu and interaction
+     */
+    public void start() {
+        printWelcome();
+
+        do {
+            printMenu();
+            askUser();
+        } while (applyUserChoice());
+    }
 
     /**
      * Print welcome message
@@ -138,6 +150,26 @@ public class MenuInteraction {
     }
 
     /**
+     * Print all movies name from a list
+     * 
+     * @param movies List of Movie to print the name
+     */
+    private void printMovies(List<Movie> movies) {
+        printSeparator();
+        movies.forEach(movie -> System.out.println(movie.getName()));
+    }
+
+    /**
+     * Print all actors identity from a list
+     * 
+     * @param actors List of Actor to print the identity
+     */
+    private void printActors(List<Actor> actors) {
+        printSeparator();
+        actors.forEach(actor -> System.out.println(actor.getIdentity()));
+    }
+
+    /**
      * Print movies from an actor name asked
      */
     private void printMoviesFromActorName() {
@@ -145,8 +177,7 @@ public class MenuInteraction {
 
         List<Movie> movies = movieRepository.findMoviesFromActorName(actorName);
 
-        printSeparator();
-        movies.forEach(movie -> System.out.println(movie.getName()));
+        printMovies(movies);
     }
 
     /**
@@ -157,8 +188,7 @@ public class MenuInteraction {
 
         List<Actor> casting = movieRepository.findCastingFromMovieName(movieName);
 
-        printSeparator();
-        casting.forEach(actor -> System.out.println(actor.getIdentity()));
+        printActors(casting);
     }
 
     /**
@@ -170,8 +200,7 @@ public class MenuInteraction {
 
         List<Movie> movies = movieRepository.findMovieBetweenTwoYears(firstYear, secondYear);
 
-        printSeparator();
-        movies.forEach(movie -> System.out.println(movie.getName()));
+        printMovies(movies);
     }
 
     /**
@@ -183,8 +212,7 @@ public class MenuInteraction {
 
         List<Movie> movies = movieRepository.findMoviesCommonToTwoActors(firstActorName, secondActorName);
 
-        printSeparator();
-        movies.forEach(movie -> System.out.println(movie.getName()));
+        printMovies(movies);
     }
 
     /**
@@ -196,8 +224,7 @@ public class MenuInteraction {
 
         List<Actor> actors = movieRepository.findActorsCommonToTwoMovies(firstMovieName, secondMovieName);
 
-        printSeparator();
-        actors.forEach(actor -> System.out.println(actor.getIdentity()));
+        printActors(actors);
     }
 
     /**
@@ -211,8 +238,7 @@ public class MenuInteraction {
 
         List<Movie> movies = movieRepository.findMoviesBetweenYearsWithAnActor(firstYear, secondYear, actorName);
 
-        printSeparator();
-        movies.forEach(movie -> System.out.println(movie.getName()));
+        printMovies(movies);
     }
 
     /**
