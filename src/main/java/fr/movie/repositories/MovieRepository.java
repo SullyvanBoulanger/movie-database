@@ -93,7 +93,7 @@ public class MovieRepository {
     /**
      * Find movies common to two actors
      * 
-     * @param firstActorName Actor Name
+     * @param firstActorName  Actor Name
      * @param secondActorName Actor Name
      * @return List of Movie
      */
@@ -114,7 +114,7 @@ public class MovieRepository {
     /**
      * Find actors common to two movies
      * 
-     * @param firstMovieName First Movie Name
+     * @param firstMovieName  First Movie Name
      * @param secondMovieName Second Movie Name
      * @return List of Actor
      */
@@ -140,19 +140,29 @@ public class MovieRepository {
     /**
      * Find movies between two years with an actor in its casting
      * 
-     * @param firstYear     (int) First year
-     * @param secondYear     (int) Second year
-     * @param actorName (String) Actor name
+     * @param firstYear  (int) First year
+     * @param secondYear (int) Second year
+     * @param actorName  (String) Actor name
      * @return List of Movie
      */
     public List<Movie> findMoviesBetweenYearsWithAnActor(int firstYear, int secondYear, String actorName) {
         List<Movie> movies = findMovieBetweenTwoYears(firstYear, secondYear);
+        Actor actor = findActorByName(actorName);
+
+        return movies.stream().filter(movie -> movie.getPrincipalCasting().contains(actor)).toList();
+    }
+
+    /**
+     * Find actor by name
+     * @param name Name of actor
+     * @return Actor find or null
+     */
+    public Actor findActorByName(String name) {
         TypedQuery<Actor> query = entityManager.createQuery(
                 "SELECT actor FROM Actor actor WHERE actor.identity LIKE :name",
                 Actor.class);
-        query.setParameter("name", actorName);
-        Actor actor = query.getResultList().getFirst();
+        query.setParameter("name", name);
 
-        return movies.stream().filter(movie -> movie.getPrincipalCasting().contains(actor)).toList();
+        return query.getResultList().getFirst();
     }
 }

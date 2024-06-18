@@ -1,8 +1,11 @@
 package fr.movie.ui;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
 
+import fr.movie.algorithms.Graph;
+import fr.movie.algorithms.Path;
 import fr.movie.entities.Actor;
 import fr.movie.entities.Movie;
 import fr.movie.repositories.MovieRepository;
@@ -74,7 +77,7 @@ public class MenuInteraction {
                 printMoviesBetweenYearsWithAnActor();
                 break;
             case 7:
-
+                printShortestPathBetweenTwoActors();
                 break;
             case 8:
                 scanner.close();
@@ -210,5 +213,23 @@ public class MenuInteraction {
 
         printSeparator();
         movies.forEach(movie -> System.out.println(movie.getName()));
+    }
+
+    /**
+     * Print the shortest path between actors asked
+     */
+    private void printShortestPathBetweenTwoActors() {
+        String firstActorName = askStringUser("1er acteur/actrice (Prénom Nom) : ");
+        String secondActorName = askStringUser("2ème acteur/actrice (Prénom Nom) : ");
+
+        Actor firstActor = movieRepository.findActorByName(firstActorName);
+        Actor secondActor = movieRepository.findActorByName(secondActorName);
+
+        Graph graph = new Graph(firstActor);
+        List<Path> paths = graph.bfs(secondActor);
+
+        Path shortestPath = paths.stream().min(Comparator.comparing(Path::getLength)).get();
+
+        System.out.println(shortestPath);
     }
 }
