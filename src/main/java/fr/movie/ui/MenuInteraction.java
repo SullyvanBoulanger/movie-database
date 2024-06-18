@@ -138,7 +138,7 @@ public class MenuInteraction {
      * Print movies from an actor name asked
      */
     private void printMoviesFromActorName() {
-        String actorName = askStringUser("Prénom Nom de l'acteur/actrice : ");
+        String actorName = askStringUser("Acteur/actrice (Prénom Nom) : ");
 
         List<Movie> movies = movieRepository.findMoviesFromActorName(actorName);
 
@@ -175,10 +175,10 @@ public class MenuInteraction {
      * Print movies common to two actors name asked
      */
     private void printCommonMoviesBetweenActors() {
-        String actorName0 = askStringUser("1er acteur/actrice : ");
-        String actorName1 = askStringUser("2ème acteur/actrice : ");
+        String firstActorName = askStringUser("1er acteur/actrice (Prénom Nom) : ");
+        String secondActorName = askStringUser("2ème acteur/actrice (Prénom Nom) : ");
 
-        List<Movie> movies = movieRepository.findMoviesCommonToTwoActors(actorName0, actorName1);
+        List<Movie> movies = movieRepository.findMoviesCommonToTwoActors(firstActorName, secondActorName);
 
         printSeparator();
         movies.forEach(movie -> System.out.println(movie.getName()));
@@ -188,10 +188,10 @@ public class MenuInteraction {
      * Print actors common to two movie name asked
      */
     private void printCommonActorsBetweenMovies() {
-        String movieName0 = askStringUser("1er film : ");
-        String movieName1 = askStringUser("2ème film : ");
+        String firstMovieName = askStringUser("1er film : ");
+        String secondMovieName = askStringUser("2ème film : ");
 
-        List<Actor> actors = movieRepository.findActorsCommonToTwoMovies(movieName0, movieName1);
+        List<Actor> actors = movieRepository.findActorsCommonToTwoMovies(firstMovieName, secondMovieName);
 
         printSeparator();
         actors.forEach(actor -> System.out.println(actor.getIdentity()));
@@ -204,7 +204,7 @@ public class MenuInteraction {
         int firstYear = askIntUser("1ère année (inclus): ");
         int secondYear = askIntUser("2ème année (inclus): ");
 
-        String actorName = askStringUser("Prénom Nom de l'acteur/actrice : ");
+        String actorName = askStringUser("Acteur/actrice (Prénom Nom) : ");
 
         List<Movie> movies = movieRepository.findMoviesBetweenYearsWithAnActor(firstYear, secondYear, actorName);
 

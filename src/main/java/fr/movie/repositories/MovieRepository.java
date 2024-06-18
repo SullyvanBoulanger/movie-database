@@ -93,17 +93,17 @@ public class MovieRepository {
     /**
      * Find movies common to two actors
      * 
-     * @param actorName0 Actor Name
-     * @param actorName1 Actor Name
+     * @param firstActorName Actor Name
+     * @param secondActorName Actor Name
      * @return List of Movie
      */
-    public List<Movie> findMoviesCommonToTwoActors(String actorName0, String actorName1) {
-        List<Movie> movies = findMoviesFromActorName(actorName0);
+    public List<Movie> findMoviesCommonToTwoActors(String firstActorName, String secondActorName) {
+        List<Movie> movies = findMoviesFromActorName(firstActorName);
 
         List<Movie> commonMovies = movies.stream().filter(movie -> {
             List<Actor> actors = movie.getRoles().stream()
                     .flatMap(role -> role.getActors().stream())
-                    .filter(actor -> (actor.getIdentity().equals(actorName1)))
+                    .filter(actor -> (actor.getIdentity().equals(secondActorName)))
                     .toList();
             return actors.size() > 0;
         }).toList();
@@ -114,17 +114,17 @@ public class MovieRepository {
     /**
      * Find actors common to two movies
      * 
-     * @param movieName0 First Movie Name
-     * @param movieName1 Second Movie Name
+     * @param firstMovieName First Movie Name
+     * @param secondMovieName Second Movie Name
      * @return List of Actor
      */
-    public List<Actor> findActorsCommonToTwoMovies(String movieName0, String movieName1) {
+    public List<Actor> findActorsCommonToTwoMovies(String firstMovieName, String secondMovieName) {
         TypedQuery<Movie> query = entityManager.createQuery("SELECT movie FROM Movie movie WHERE movie.name LIKE :name",
                 Movie.class);
-        query.setParameter("name", movieName0);
+        query.setParameter("name", firstMovieName);
         Movie movie0 = query.getResultList().getFirst();
 
-        query.setParameter("name", movieName1);
+        query.setParameter("name", secondMovieName);
         Movie movie1 = query.getResultList().getFirst();
 
         List<Actor> actors0 = new ArrayList<>(
@@ -140,13 +140,13 @@ public class MovieRepository {
     /**
      * Find movies between two years with an actor in its casting
      * 
-     * @param year0     (int) First year
-     * @param year1     (int) Second year
+     * @param firstYear     (int) First year
+     * @param secondYear     (int) Second year
      * @param actorName (String) Actor name
      * @return List of Movie
      */
-    public List<Movie> findMoviesBetweenYearsWithAnActor(int year0, int year1, String actorName) {
-        List<Movie> movies = findMovieBetweenTwoYears(year0, year1);
+    public List<Movie> findMoviesBetweenYearsWithAnActor(int firstYear, int secondYear, String actorName) {
+        List<Movie> movies = findMovieBetweenTwoYears(firstYear, secondYear);
         TypedQuery<Actor> query = entityManager.createQuery(
                 "SELECT actor FROM Actor actor WHERE actor.identity LIKE :name",
                 Actor.class);
