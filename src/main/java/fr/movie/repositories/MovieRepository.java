@@ -66,7 +66,7 @@ public class MovieRepository {
      */
     public List<Actor> findCastingFromMovieName(String movieName) {
         TypedQuery<Actor> query = entityManager.createQuery(
-                "SELECT principalCasting FROM Movie movie JOIN movie.principalCasting principalCasting WHERE movie.name LIKE :name",
+                "SELECT actors FROM Movie movie JOIN movie.roles roles JOIN roles.actors actors WHERE movie.name LIKE :name",
                 Actor.class);
         query.setParameter("name", movieName);
 
