@@ -2,7 +2,6 @@ package fr.movie.algorithms;
 
 import java.util.List;
 
-import fr.movie.entities.Actor;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -10,11 +9,11 @@ import lombok.Getter;
  * Represents a path for Breadth-First Search algorithm
  */
 @AllArgsConstructor
-public class Path {
+public class Path<T> {
     /**
-     * The sequence of actors in the path
+     * The sequence of elements in the path
      */
-    private List<Actor> actors;
+    private List<T> elements;
 
     /**
      * Total steps or distance of the path
@@ -26,7 +25,7 @@ public class Path {
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
 
-        actors.forEach(actor -> stringBuilder.append(actor.getIdentity()).append(" -> "));
+        elements.forEach(element -> stringBuilder.append(element.toString()).append(" -> "));
         stringBuilder.delete(stringBuilder.length() - 4, stringBuilder.length() - 1);
 
         return stringBuilder.toString();

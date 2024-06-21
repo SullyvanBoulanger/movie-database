@@ -3,6 +3,8 @@ package fr.movie.ui;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
+import java.util.function.Function;
+import java.util.stream.Stream;
 
 import fr.movie.algorithms.Graph;
 import fr.movie.algorithms.Path;
@@ -251,10 +253,13 @@ public class SearchMenu {
         Actor firstActor = movieRepository.findActorByName(firstActorName);
         Actor secondActor = movieRepository.findActorByName(secondActorName);
 
-        Graph graph = new Graph(firstActor);
-        List<Path> paths = graph.bfs(secondActor);
+        Function<Actor, Stream<Actor>> mappingFunction = (actor -> actor.getMovies().stream()
+                .flatMap(movie -> movie.getRoles().stream())
+                .flatMap(role -> role.getActors().stream()));
+        Graph<Actor> graph = new Graph<>(firstActor, mappingFunction);
+        List<Path<Actor>> paths = graph.bfs(secondActor);
 
-        Path shortestPath = paths.stream().min(Comparator.comparing(Path::getLength)).get();
+        Path<Actor> shortestPath = paths.stream().min(Comparator.comparing(Path::getLength)).get();
 
         System.out.println(shortestPath);
     }

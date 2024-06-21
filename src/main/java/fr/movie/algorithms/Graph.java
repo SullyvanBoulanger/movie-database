@@ -6,69 +6,73 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 import java.util.Set;
-
-import fr.movie.entities.Actor;
+import java.util.function.Function;
+import java.util.stream.Stream;
 
 /**
- * Represents a graph of actors
+ * Represents a graph of elements
+ * 
+ * T represents element type
  */
-public class Graph {
+public class Graph<T> {
     /**
      * Represents the queue
      */
-    private Queue<List<Actor>> queue = new LinkedList<>();
+    private Queue<List<T>> queue = new LinkedList<>();
 
     /**
      * Represents already visited/marked actor names
      * String is used instead of Actor object to light comparisons
      */
-    private Set<String> visited = new HashSet<>(); // To avoid visiting the same actor multiple times
+    private Set<String> visited = new HashSet<>();
 
     /**
      * List of all paths
      */
-    private List<Path> paths = new ArrayList<>();
+    private List<Path<T>> paths = new ArrayList<>();
 
-    public Graph(Actor startingActor) {
-        this.queue.offer(List.of(startingActor));
+    /**
+     * Mapping Function to fill queue
+     */
+    private Function<T, Stream<T>> mappingFunction = null;
 
-        this.visited.add(startingActor.getIdentity());
+    /**
+     * Constructor requesting a starting element for the graph and a mapping
+     * Function
+     * 
+     * @param startingElement Starting Element
+     * @param mappingFunction Mapping Function
+     */
+    public Graph(T startingElement, Function<T, Stream<T>> mappingFunction) {
+        this.queue.offer(List.of(startingElement));
+        this.visited.add(startingElement.toString());
+        this.mappingFunction = mappingFunction;
     }
 
-    public List<Path> bfs(Actor searched) {
+    /**
+     * Execute a Breadth First Search (known as BFS) and return a list of Path
+     * leading to searched element
+     * 
+     * @param searchedElement Searched Element
+     * @return List of Path leading to searched element
+     */
+    public List<Path<T>> bfs(T searchedElement) {
         while (!queue.isEmpty()) {
-            List<Actor> currentPath = queue.poll();
-            Actor lastActor = currentPath.getLast();
+            List<T> currentPath = queue.poll();
+            T lastElement = currentPath.getLast();
 
-            if (lastActor.equals(searched)) {
-                paths.add(new Path(currentPath, 1 + currentPath.size()));
+            if (lastElement.equals(searchedElement)) {
+                paths.add(new Path<>(currentPath, 1 + currentPath.size()));
             }
 
-            lastActor.getMovies().stream()
-                    .flatMap(movie -> movie.getRoles().stream())
-                    .flatMap(role -> role.getActors().stream())
-                    .filter(actor -> !visited.contains(actor.getIdentity()))
-                    .forEach(actor -> {
-                            List<Actor> newPath = new ArrayList<>(currentPath);
-                            newPath.add(actor);
-                            queue.offer(newPath);
-                            visited.add(actor.getIdentity());
+            mappingFunction.apply(lastElement)
+                    .filter(element -> !visited.contains(element.toString()))
+                    .forEach(element -> {
+                        List<T> newPath = new ArrayList<>(currentPath);
+                        newPath.add(element);
+                        queue.offer(newPath);
+                        visited.add(element.toString());
                     });
-
-            // for (Movie movie : lastActor.getMovies()) {
-            //     for (Role role : movie.getRoles()) {
-            //         for (Actor nextActor : role.getActors()) {
-
-            //             if (!visited.contains(nextActor.getIdentity())) {
-            //                 List<Actor> newPath = new ArrayList<>(currentPath);
-            //                 newPath.add(nextActor);
-            //                 queue.offer(newPath);
-            //                 visited.add(nextActor.getIdentity());
-            //             }
-
-            //         }
-            //     }
-            // }
         }
 
         return paths;

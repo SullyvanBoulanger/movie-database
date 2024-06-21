@@ -74,4 +74,9 @@ public class Actor extends Person {
 
         return true;
     }
+
+    @Override
+    public String toString() {
+        return getIdentity();
+    }
 }
